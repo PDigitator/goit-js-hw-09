@@ -11,7 +11,7 @@ const refs = {
   fieldSeconds: document.querySelector('[data-seconds]'),
 };
 
-let timerId = null;
+let intervalId = null;
 
 refs.startBtn.disabled = true;
 
@@ -57,7 +57,7 @@ function convertMs(ms) {
 refs.startBtn.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
-  timerId = setInterval(() => {
+  intervalId = setInterval(() => {
     const convertedTime = convertMs(fp.selectedDates[0] - Date.now());
 
     if (
@@ -66,7 +66,7 @@ function onStartBtnClick() {
       convertedTime.minutes === 0 &&
       convertedTime.seconds === 0
     ) {
-      clearInterval(timerId);
+      clearInterval(intervalId);
       refs.startBtn.disabled = true;
       Notiflix.Report.success(
         'COUNTDOWN IS OVER',
@@ -75,15 +75,14 @@ function onStartBtnClick() {
       );
     }
 
-    refs.fieldDays.textContent = String(convertedTime.days).padStart(2, '0');
-    refs.fieldHours.textContent = String(convertedTime.hours).padStart(2, '0');
-    refs.fieldMinutes.textContent = String(convertedTime.minutes).padStart(
-      2,
-      '0'
-    );
-    refs.fieldSeconds.textContent = String(convertedTime.seconds).padStart(
-      2,
-      '0'
-    );
+    refs.fieldDays.textContent = addLeadingZero(convertedTime.days);
+    refs.fieldHours.textContent = addLeadingZero(convertedTime.hours);
+    refs.fieldMinutes.textContent = addLeadingZero(convertedTime.minutes);
+    refs.fieldSeconds.textContent = addLeadingZero(convertedTime.seconds);
   }, 1000);
+}
+
+function addLeadingZero(value) {
+  const leadingZero = String(value).padStart(2, '0');
+  return leadingZero;
 }
