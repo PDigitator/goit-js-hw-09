@@ -57,6 +57,8 @@ function convertMs(ms) {
 refs.startBtn.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
+  refs.datePicker.disabled = true;
+
   intervalId = setInterval(() => {
     const { days, hours, minutes, seconds } = convertMs(
       fp.selectedDates[0] - Date.now()
@@ -65,6 +67,7 @@ function onStartBtnClick() {
     if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(intervalId);
       refs.startBtn.disabled = true;
+      refs.datePicker.disabled = false;
       Notiflix.Report.success(
         'COUNTDOWN IS OVER',
         'Please choose a new date in the future',
