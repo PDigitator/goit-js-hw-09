@@ -58,14 +58,11 @@ refs.startBtn.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
   intervalId = setInterval(() => {
-    const convertedTime = convertMs(fp.selectedDates[0] - Date.now());
+    const { days, hours, minutes, seconds } = convertMs(
+      fp.selectedDates[0] - Date.now()
+    );
 
-    if (
-      convertedTime.days === 0 &&
-      convertedTime.hours === 0 &&
-      convertedTime.minutes === 0 &&
-      convertedTime.seconds === 0
-    ) {
+    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(intervalId);
       refs.startBtn.disabled = true;
       Notiflix.Report.success(
@@ -75,10 +72,10 @@ function onStartBtnClick() {
       );
     }
 
-    refs.fieldDays.textContent = addLeadingZero(convertedTime.days);
-    refs.fieldHours.textContent = addLeadingZero(convertedTime.hours);
-    refs.fieldMinutes.textContent = addLeadingZero(convertedTime.minutes);
-    refs.fieldSeconds.textContent = addLeadingZero(convertedTime.seconds);
+    refs.fieldDays.textContent = addLeadingZero(days);
+    refs.fieldHours.textContent = addLeadingZero(hours);
+    refs.fieldMinutes.textContent = addLeadingZero(minutes);
+    refs.fieldSeconds.textContent = addLeadingZero(seconds);
   }, 1000);
 }
 
