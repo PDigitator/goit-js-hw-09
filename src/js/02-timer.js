@@ -64,7 +64,7 @@ function onStartBtnClick() {
       fp.selectedDates[0] - Date.now()
     );
 
-    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+    if (days + hours + minutes + seconds === 0) {
       clearInterval(intervalId);
       refs.startBtn.disabled = true;
       refs.datePicker.disabled = false;
