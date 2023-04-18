@@ -1,6 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import Notiflix from 'notiflix';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 const refs = {
   datePicker: document.querySelector('#datetime-picker'),
@@ -24,7 +24,7 @@ const options = {
     if (selectedDates[0] - Date.now() > 0) {
       refs.startBtn.disabled = false;
     } else {
-      Notiflix.Report.failure(
+      Report.failure(
         'СOUNTDOWN ERROR!',
         'Please choose a date in the future',
         'Close'
@@ -68,7 +68,7 @@ function onStartBtnClick() {
       clearInterval(intervalId);
       refs.startBtn.disabled = true;
       refs.datePicker.disabled = false;
-      Notiflix.Report.success(
+      Report.success(
         'COUNTDOWN IS OVER',
         'Please choose a new date in the future',
         'Close'
