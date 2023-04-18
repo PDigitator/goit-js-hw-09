@@ -17,7 +17,6 @@ function onBtnClick(evt) {
   if (evt.target.textContent === 'Start') {
     intervalId = setInterval(() => {
       const color = getRandomHexColor();
-
       body.style.backgroundColor = color;
     }, 1000);
 

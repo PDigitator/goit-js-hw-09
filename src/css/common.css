@@ -16,3 +16,15 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* Стилі до 02-timer */
+.timer {
+  display: flex;
+  gap: 20px;
+}
+
+.value {
+  display: block;
+  font-size: 28px;
+  text-align: center;
+}
