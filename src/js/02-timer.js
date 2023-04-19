@@ -24,6 +24,7 @@ const options = {
     if (selectedDates[0] - Date.now() > 0) {
       refs.startBtn.disabled = false;
     } else {
+      refs.startBtn.disabled = true;
       Report.failure(
         'СOUNTDOWN ERROR!',
         'Please choose a date in the future',

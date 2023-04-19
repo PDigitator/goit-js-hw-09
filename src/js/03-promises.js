@@ -29,6 +29,8 @@ function onSubmit(evt) {
 
     delayValue += stepValue;
   }
+
+  evt.currentTarget.reset();
 }
 
 function createPromise(position, delay) {
